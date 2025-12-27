@@ -41,6 +41,8 @@ const sessionOptions = {
     }
 };
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -55,6 +57,7 @@ passport.use(
     )
 );
 
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -91,3 +94,4 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
     console.log("server running on port 8080");
 });
+
