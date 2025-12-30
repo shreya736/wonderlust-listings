@@ -25,10 +25,16 @@ const listingSchema = new Schema({
             ref: "Review",
         },
     ],
-    Owner: {
-        type: Schema.Types.ObjectId,
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+
+});
+
+const userSchema = new Schema({
+    username: String,
+    email: String,
 
 });
 
@@ -42,3 +48,4 @@ listingSchema.post("findOneAndDelete", async (listing) => {
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
+
