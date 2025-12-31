@@ -17,22 +17,28 @@ router.get(
 
 //New Route
 router.get("/new", (req, res) => {
-    console.log(req.user);
-    if (!req.isAuthenticated()) {
-        req.flash("error", "you must be logged in to create listing!");
-        return res.redirect("/login");
-    }
+    // console.log(req.user);
+    // if (!req.isAuthenticated()) {
+    //     req.flash("error", "you must be logged in to create listing!");
+    //     return res.redirect("/login");
+    // }
     res.render("listings/new.ejs");
 });
 
 
 //Show Route
-router.get("/:id",
+router.get(
+    "/:id",
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         const listing = await Listing.findById(id)
-            .populate("owner")
-            .populate("reviews");
+            .populate({
+                path: "reviews",
+                populate: {
+                    path: "author",
+                },
+            })
+            .populate("owner");
         if (!listing) {
             req.flash("error", "Listing you requested for does not exist!");
             res.redirect("/listings");
