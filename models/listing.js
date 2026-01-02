@@ -9,12 +9,8 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        type: String,
-        default: "https://www.andrewshoemaker.com/images/640/burning-secret-maui-secret-beach-sunset.jpg",
-        set: (v) =>
-            v === ""
-                ? "https://www.andrewshoemaker.com/images/640/burning-secret-maui-secret-beach-sunset.jpg"
-                : v,
+        url: String,
+        filename: String,
     },
     price: Number,
     location: String,
@@ -48,4 +44,5 @@ listingSchema.post("findOneAndDelete", async (listing) => {
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
+
 
