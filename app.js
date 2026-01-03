@@ -1,7 +1,6 @@
-if (process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
-}
-
+};
 
 
 const express = require("express");
@@ -107,6 +106,8 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
     console.log("server running on port 8080");
 });
+
+
 
 
 
