@@ -26,15 +26,25 @@ const listingSchema = new Schema({
         ref: "User",
     },
 
+    geometry: {
+        type: {
+            type: String, // Don't do `{ location: { type: String } }`
+            enum: ['Point'], // 'location.type' must be 'Point'
+            required: true,
+        },
+        coordinates: {
+            type: [Number],
+            required: true,
+        },
+    },
 });
+
+
 
 const userSchema = new Schema({
     username: String,
     email: String,
-
 });
-
-
 
 listingSchema.post("findOneAndDelete", async (listing) => {
     if (listing) {
