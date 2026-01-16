@@ -80,12 +80,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Test user route
-// app.get("/demouser", async (req, res) => {
-//     const fakeUser = new User({ email: "student@gmail.com" });
-//     const registeredUser = await User.register(fakeUser, "helloworld");
-//     res.send(registeredUser);
-// });
 
 // Routes
 app.use("/listings", listingRouter);
@@ -106,6 +100,7 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
     console.log("server running on port 8080");
 });
+
 
 
 
